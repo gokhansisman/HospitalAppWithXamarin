@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2.KullaniciKayit">
+    <ContentPage.Content>
+        <StackLayout Spacing="10" Padding="20">
+            <Entry Text="{Binding kullaniciAdi}"/>
+            <Entry Text="{Binding kullaniciSifre}" IsPassword="True"/>
+
+
+            <Button Text="Kullanici Ekle"
+                  TextColor="White"
+                  BackgroundColor="DodgerBlue"
+                  FontSize="22"
+                  Command="{Binding AddCommand}"/>
+            <Button Text="Kullanicilari Listele"
+                  TextColor="White"
+                  BackgroundColor="Fuchsia"
+                  FontSize="22"
+                  Command="{Binding RefreshCommand}"/>
+
+
+            <ListView  ItemsSource="{Binding Kullanicilarim}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                
+                                <Label FontSize="10" Margin="10, 0, 5, 0" Text="{Binding Adi}" />
+
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

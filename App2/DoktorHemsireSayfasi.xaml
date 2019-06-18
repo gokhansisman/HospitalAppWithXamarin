@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2.DoktorHemsireSayfasi"
+    Title="Anasayfa">
+    <ContentPage.Content>
+        <StackLayout Spacing="10" Padding="20">
+        <Label Text="Sorular" FontSize="Large" TextColor="Blue"/>
+        
+
+            <Picker Title="Odalar" ItemsSource="{Binding Odalars}" ItemDisplayBinding="{Binding Numara}" SelectedItem="{Binding Odalarim}" HorizontalOptions="FillAndExpand" />
+            <Picker Title="Koridorlar" ItemsSource="{Binding Koridors}" ItemDisplayBinding="{Binding Numara}" SelectedItem="{Binding Koridorlarim}" HorizontalOptions="FillAndExpand" />
+            <Picker Title="Nesneler" ItemsSource="{Binding Nesnes}" ItemDisplayBinding="{Binding Adi}"  SelectedItem="{Binding Nesnelerim}" HorizontalOptions="FillAndExpand" />
+            <Picker ItemsSource="{Binding Doktors}" SelectedItem="{Binding Doktorlarim}" HorizontalOptions="FillAndExpand" />
+            <Button Text="Cevapları göster"
+                  Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+                    Command="{Binding CevaplariGöster}"
+                                        
+                                 />
+            <ListView ItemsSource="{Binding Sorularim}" SelectedItem="{Binding Question, Mode=TwoWay}" x:Name="lwSorularim">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                            <Grid>
+                                <Label Grid.Row="0" Grid.Column="0" FontSize="10" Margin="10, 0, 5, 0" Text="{Binding Adi}" />
+                                <Label Grid.Row="1" Grid.Column="0" FontSize="10" Margin="10, 0, 5, 0" Text="{Binding Cevap}" />
+                                <Entry Text="{Binding Cevap}" x:Name="verilen_cevap" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" />
+                                <Button Text="Cevapla"
+                                        BindingContext="{Binding Source={x:Reference lwSorularim}, Path=BindingContext}" 
+                                        Command="{Binding AAAA}"
+                                        Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+                                        
+                                 />
+                            </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+    </ContentPage.Content>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Günlük" Order="Secondary" Command="{Binding GunlukCommand}" />
+        <ToolbarItem Text="Haftalık" Order="Secondary" Command="{Binding HaftalikCommand}" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

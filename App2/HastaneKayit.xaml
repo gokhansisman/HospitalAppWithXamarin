@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2.HastaneKayit">
+    <ContentPage.Content>
+        <StackLayout Spacing="10" Padding="20">
+            <Label Text="HASTANE KAYIT SAYFASI" TextColor="Blue" FontSize="22"/>
+            
+            <Entry Placeholder="Hastane Adı" Text="{Binding HastaneAdi}"/>
+            <Entry Placeholder="Şubesi" Text="{Binding HastaneSube}"/>
+
+            <Button Text="Hastane Ekle"
+                  TextColor="White"
+                  BackgroundColor="DodgerBlue"
+                  FontSize="22"
+                  Command="{Binding AddCommand}"/>
+            <Button Text="Hastaneleri Listele"
+                  TextColor="White"
+                  BackgroundColor="Fuchsia"
+                  FontSize="22"
+                  Command="{Binding RefreshCommand}"/>
+
+            <ListView  ItemsSource="{Binding Hastanelerim}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Deneme" Clicked="MenuItem_Clicked"/>
+                                <MenuItem Text="Deneme2" Clicked="MenuItem_Clicked_1" IsDestructive="True"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal">
+                                
+                                <Label FontSize="10" Margin="10, 0, 5, 0" Text="{Binding Id}" />
+                                <Label FontSize="10" Margin="10, 0, 5, 0" Text="{Binding Adi}" />
+                                <Label FontSize="10" Margin="10, 0, 5, 0" Text="{Binding Sube}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2.NesneKayit">
+    <ContentPage.Content>
+        <StackLayout Spacing="10" Padding="20">
+
+
+
+            <Picker Title="Odalar"  x:Name="IndustryTypePicker1" SelectedIndex="{Binding OdaSelectedIndex}" ItemsSource="{Binding Odalarim}" HorizontalOptions="FillAndExpand" />
+            <Picker Title="Koridorlar" x:Name="IndustryTypePicker2" SelectedIndex="{Binding KoridorSelectedIndex}" ItemsSource="{Binding Koridorlarim}" HorizontalOptions="FillAndExpand" />
+            <Entry Text="{Binding NesneAdi}"/>
+            <Button Text="Nesne Ekle"
+                  TextColor="White"
+                  BackgroundColor="DodgerBlue"
+                  FontSize="22"
+                  Command="{Binding AddCommand}"/>
+            <Button Text="Nesneleri Listele"
+                  TextColor="White"
+                  BackgroundColor="Fuchsia"
+                  FontSize="22"
+                  Command="{Binding RefreshCommand}"/>
+
+            <ListView  ItemsSource="{Binding Nesnelerim}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label FontSize="10" Margin="10, 0, 5, 0" Text="{Binding KoridorId}" />
+                                <Label FontSize="10" Margin="10, 0, 5, 0" Text="{Binding OdaId}" />
+                                <Label FontSize="10" Margin="10, 0, 5, 0" Text="{Binding Adi}" />
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

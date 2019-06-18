@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2.HemsireKayit">
+    <ContentPage.Content>
+        <StackLayout Spacing="10" Padding="20">
+            <Entry Text="{Binding HemsireAdi}"/>
+   
+            <Picker x:Name="IndustryTypePicker1" SelectedIndex="{Binding HastaneSelectedIndex}" ItemsSource="{Binding Hastanelerim}" HorizontalOptions="FillAndExpand" />
+
+            <Button Text="Hemşire Ekle"
+                  TextColor="White"
+                  BackgroundColor="DodgerBlue"
+                  FontSize="22"
+                  Command="{Binding AddCommand}"/>
+            <Button Text="Hemsireleri Listele"
+                  TextColor="White"
+                  BackgroundColor="Fuchsia"
+                  FontSize="22"
+                  Command="{Binding RefreshCommand}"/>
+
+
+            <ListView  ItemsSource="{Binding Hemsirelerim}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label FontSize="10" Margin="10, 0, 5, 0" Text="{Binding Id}" />
+                                <Label FontSize="10" Margin="10, 0, 5, 0" Text="{Binding Adı}" />
+                                
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

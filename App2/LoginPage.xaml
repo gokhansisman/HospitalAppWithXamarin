@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             x:Class="App2.LoginPage"
+             Title="{ Binding PageTitle }">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <Grid
+        RowSpacing="0"
+        ColumnSpacing="0">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="6*" />
+        </Grid.RowDefinitions>
+
+        <BoxView 
+            Grid.Row="0"
+            BackgroundColor="#00CCD6" />
+        
+        <Image
+            Grid.Row="0"
+            Source="brand_logo.png"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            HeightRequest="100"
+            WidthRequest="100" />
+
+        <Label 
+            Grid.Row="1"
+            Text="Giriş Sayfasına Hoşgeldiniz"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+        
+        <StackLayout                
+            Grid.Row="2"
+            VerticalOptions="Fill"
+            HorizontalOptions="Center"
+            Spacing="15">
+
+            <StackLayout HorizontalOptions="Center" Spacing="5">
+                <Label 
+                    Text="Kullanıcı Adı :" />
+                <Entry 
+                    Text="{ Binding Email }" 
+                    Keyboard="Email"
+                    WidthRequest="300" />
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Center" Spacing="5">
+                <Label 
+                    Text="Şifre:" />
+                <Entry 
+                    Text="{ Binding Password }"
+                    WidthRequest="300"
+                    IsPassword="True" />
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout
+            Grid.Row="2"
+            VerticalOptions="End"
+            HorizontalOptions="Start"
+            Margin="10,0,0,15"
+            Spacing="15">
+            <Label Text="Şifrenizi mi unuttunuz?" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{ Binding ForgotPasswordCommand }" />
+                </Label.GestureRecognizers>
+            </Label>
+            
+        </StackLayout>
+        
+        <Button
+            Grid.Row="2"
+            Text="Giriş"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            Margin="15,10"
+            Command="{ Binding LoginCommand }" />
+        <Button
+            Grid.Row="2"
+            
+            Text="Doktor veya Hemşire Girişi"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            Margin="15,10,0,60"
+            Command="{ Binding DoktorHemsireGirisCommand }" />
+
+
+        <!-- MODAL BACKGROUND LAYER -->
+        <BoxView
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            BackgroundColor="Black"
+            Opacity="0.8"
+            IsVisible="{ Binding IsBusy }" />
+
+        <ActivityIndicator
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Color="White"
+            IsRunning="{ Binding IsBusy }" 
+            IsVisible="{ Binding IsBusy }" />
+
+        <!-- CANCEL BUTTON (appears after X seconds after login) -->
+        <StackLayout
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            VerticalOptions="Center"
+            TranslationY="100"
+            Margin="50,0"
+            IsVisible="{ Binding IsShowCancel }">
+            <Label 
+                Text="This is taking a little longer than expected, please hang in there..." 
+                FontSize="Small" 
+                TextColor="White"
+                LineBreakMode="WordWrap"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"/>            
+            <Button 
+                Text="Cancel" 
+                Command="{ Binding CancelLoginCommand }" 
+                HorizontalOptions="Center" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
